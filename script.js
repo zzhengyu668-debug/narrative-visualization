@@ -430,7 +430,7 @@ function updateAnnotation(sceneData) {
       boxY: yScale(78),
       boxWidth: 270,
       title: "Longer lives came first",
-      body: `China added ${formatLife(gain)} years of life expectancy since 1952 while income remained below ${formatIncome(china.gdpPercap)} per person.`
+      body: `China added ${formatLife(gain)} years of life expectancy since 1952 while income remained below $1,000 per person.`
     });
   }
 
