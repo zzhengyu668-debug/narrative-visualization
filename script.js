@@ -397,6 +397,14 @@ function hideTooltip() {
 function updateAnnotation(sceneData) {
   annotationLayer.selectAll("*").remove();
 
+  // Keep the narrative text in a consistent, low-density corner so the
+  // annotation remains visible without covering the main bubble cloud.
+  const calloutBox = {
+    boxX: margin.left + 16,
+    boxY: margin.top + 14,
+    boxWidth: 270
+  };
+
   if (state.currentScene === 0) {
     const lowerLeft = sceneData.filter(d => d.gdpPercap < 2000 && d.lifeExp < 55);
     annotationLayer.append("rect")
@@ -410,9 +418,7 @@ function updateAnnotation(sceneData) {
     drawCallout({
       targetX: xScale(1150),
       targetY: yScale(47),
-      boxX: xScale(2300),
-      boxY: yScale(57),
-      boxWidth: 252,
+      ...calloutBox,
       title: "A divided starting point",
       body: `${lowerLeft.length} of ${sceneData.length} countries were below both $2,000 income and 55 years of life expectancy.`
     });
@@ -426,9 +432,7 @@ function updateAnnotation(sceneData) {
     drawCallout({
       targetX: xScale(china.gdpPercap),
       targetY: yScale(china.lifeExp),
-      boxX: xScale(2200),
-      boxY: yScale(78),
-      boxWidth: 270,
+      ...calloutBox,
       title: "Longer lives came first",
       body: `China added ${formatLife(gain)} years of life expectancy since 1952 while income remained below $1,000 per person.`
     });
@@ -444,9 +448,7 @@ function updateAnnotation(sceneData) {
     drawCallout({
       targetX: xScale(africaIncome),
       targetY: yScale(africaLife),
-      boxX: xScale(4200),
-      boxY: yScale(70),
-      boxWidth: 270,
+      ...calloutBox,
       title: "The gap did not disappear",
       body: `Africa's median lifespan was ${formatLife(africaLife)} years, compared with ${formatLife(elsewhereLife)} years across the rest of the dataset.`
     });
