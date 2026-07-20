@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An interactive D3 story about global income and life expectancy from 1952 to 2007.">
+  <title>Wealth &amp; Health | A D3 Narrative Visualization</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="page-header">
+    <div class="header-mark" aria-hidden="true">W/H</div>
+    <div class="header-copy">
+      <p class="eyebrow">An interactive data story <span aria-hidden="true">·</span> 1952-2007</p>
+      <h1>Wealth <span>&amp;</span> Health</h1>
+      <p class="dek">Economic growth and longer lives traveled together. The journey, however, was far from equal.</p>
+    </div>
+  </header>
+
+  <main>
+    <article class="story-card" aria-label="Interactive slideshow">
+      <section class="scene-header" aria-live="polite">
+        <div class="scene-number" id="scene-number">01 / 03</div>
+        <div>
+          <p class="scene-year" id="scene-year">1952</p>
+          <h2 id="scene-title">A Divided World</h2>
+          <p id="scene-copy">Loading the first scene...</p>
+        </div>
+      </section>
+
+      <section class="metric-row" aria-label="Current scene summary">
+        <div class="metric">
+          <span class="metric-value" id="metric-countries">-</span>
+          <span class="metric-label">countries shown</span>
+        </div>
+        <div class="metric">
+          <span class="metric-value" id="metric-life">-</span>
+          <span class="metric-label">median life expectancy</span>
+        </div>
+        <div class="metric">
+          <span class="metric-value" id="metric-income">-</span>
+          <span class="metric-label">median income per person</span>
+        </div>
+      </section>
+
+      <section class="chart-section" aria-label="Income and life expectancy bubble chart">
+        <div class="chart-wrap" id="chart-wrap">
+          <svg id="chart" viewBox="0 0 1000 620" role="img" aria-labelledby="chart-title chart-description">
+            <title id="chart-title">Income and life expectancy by country</title>
+            <desc id="chart-description">A bubble chart with income per person on a logarithmic horizontal axis, life expectancy on the vertical axis, population shown by bubble area, and continent shown by color.</desc>
+          </svg>
+          <div class="tooltip" id="tooltip" role="status" aria-hidden="true"></div>
+          <div class="loading" id="loading">Loading Gapminder data...</div>
+        </div>
+
+        <div class="encoding-note" aria-label="Visual encodings">
+          <span><strong>Position</strong> income + lifespan</span>
+          <span><strong>Area</strong> population</span>
+          <span><strong>Color</strong> continent</span>
+          <span class="hover-note">Hover or focus a country for details</span>
+        </div>
+      </section>
+
+      <section class="explore-panel" id="explore-panel" hidden>
+        <div>
+          <p class="explore-kicker">Explore the final snapshot</p>
+          <p class="explore-copy">Select a continent to bring its 2007 countries forward. Other countries stay faint for context.</p>
+        </div>
+        <div class="continent-filters" id="continent-filters" aria-label="Filter by continent"></div>
+      </section>
+
+      <nav class="story-nav" aria-label="Story navigation">
+        <button class="nav-button previous" id="previous" type="button">
+          <span aria-hidden="true">←</span> Previous
+        </button>
+        <div class="progress" id="progress" aria-label="Choose a scene"></div>
+        <button class="nav-button next" id="next" type="button">
+          Next <span aria-hidden="true">→</span>
+        </button>
+      </nav>
+      <p class="keyboard-hint">Use the buttons, scene dots, or left and right arrow keys to move through the story.</p>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    <p><strong>Data:</strong> <a href="https://www.gapminder.org/data/" target="_blank" rel="noreferrer">Gapminder</a>, distributed through the <a href="https://github.com/plotly/datasets" target="_blank" rel="noreferrer">Plotly datasets repository</a>. GDP per capita is shown on a logarithmic scale.</p>
+    <p>Built with D3.js. Each circle represents one country.</p>
+  </footer>
+
+  <noscript>This visualization requires JavaScript to display the data story.</noscript>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="./script.js"></script>
+</body>
+</html>
